@@ -1,5 +1,5 @@
 import grpc
-from app.interservice.proto import auth_pb2, auth_pb2_grpc
+from proto.auth import auth_pb2, auth_pb2_grpc
 
 
 def check_auth_token(

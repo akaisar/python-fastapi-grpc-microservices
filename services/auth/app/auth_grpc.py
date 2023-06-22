@@ -1,7 +1,7 @@
 import grpc
 import threading
 from concurrent import futures
-from app.proto import auth_pb2, auth_pb2_grpc
+from proto.auth import auth_pb2, auth_pb2_grpc
 from app.core.security import verify_access_token
 
 class AuthService(auth_pb2_grpc.AuthServicer):
