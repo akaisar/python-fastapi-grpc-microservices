@@ -7,6 +7,7 @@ services:
     command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     volumes:
       - ./services/blockchain:/usr/src/app
+      - ./proto:/usr/src/proto
     ports:
       - 8001:8000
     environment:
@@ -22,11 +23,9 @@ services:
     volumes:
       - ./services/auth:/usr/src/app
       - ./db-models/models:/usr/src/models
-    # expose:
-    #   - 80
+      - ./proto:/usr/src/proto
     ports:
       - 8002:8000
-      # - 80:80
     environment:
       - DATABASE_URL=postgres://postgres:postgres@app-db:5432/app_db_dev
       - PYTHONPATH=/usr/src
