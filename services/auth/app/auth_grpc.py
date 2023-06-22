@@ -6,16 +6,14 @@ from app.core.security import verify_access_token
 
 class AuthService(auth_pb2_grpc.AuthServicer):
     def CheckToken(self, request, context):
-        # Add your logic to check the authentication token against the test microservice
         token = request.token
-        # Perform authentication token validation here
         is_valid = verify_access_token(token=token)
 
         return auth_pb2.TokenResponse(valid=is_valid)
 
 grpc_server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 auth_pb2_grpc.add_AuthServicer_to_server(AuthService(), grpc_server)
-grpc_server.add_insecure_port('0.0.0.0:50051')  # Replace with the desired port
+grpc_server.add_insecure_port('0.0.0.0:50051')
 
 
 def start_grpc_server():
